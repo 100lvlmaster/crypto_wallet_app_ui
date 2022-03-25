@@ -1,3 +1,7 @@
+import 'package:crypto_wallet_app/icon/my_flutter_app_icons.dart';
+import 'package:crypto_wallet_app/widgets/account_header.dart';
+import 'package:crypto_wallet_app/widgets/coin_tile.dart';
+import 'package:crypto_wallet_app/widgets/coin_tile_square.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -37,28 +41,36 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       extendBody: true,
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xff151439),
-        items: [
+        selectedIconTheme: const IconThemeData(
+          color: Color(0xff4376FE),
+        ),
+        selectedLabelStyle: const TextStyle(
+          color: Color(0xff4376FE),
+        ),
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        backgroundColor: const Color(0xff151439),
+        items: const [
           BottomNavigationBarItem(
             backgroundColor: Color(0xff151439),
             label: "Home",
-            icon: Icon(Icons.home),
+            icon: Icon(MyFlutterApp.vector2),
           ),
           BottomNavigationBarItem(
-            label: "Home",
-            icon: Icon(Icons.home),
+            label: "Portfolio",
+            icon: Icon(MyFlutterApp.vector),
           ),
           BottomNavigationBarItem(
-            label: "Home",
-            icon: Icon(Icons.home),
+            label: "Portfolio",
+            icon: Icon(MyFlutterApp.arrowBtn),
           ),
           BottomNavigationBarItem(
-            label: "Home",
-            icon: Icon(Icons.home),
+            label: "Prices",
+            icon: Icon(MyFlutterApp.vector3),
           ),
           BottomNavigationBarItem(
-            label: "Home",
-            icon: Icon(Icons.home),
+            label: "Settings",
+            icon: Icon(Icons.person_outline_rounded),
           ),
         ],
       ),
@@ -106,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    TextSpan(
+                    const TextSpan(
                       text: '+7.65%',
                       style: TextStyle(
                         color: Colors.green,
@@ -126,15 +138,33 @@ class _MyHomePageState extends State<MyHomePage> {
                   scrollDirection: Axis.horizontal,
                   physics: const BouncingScrollPhysics(),
                   children: [
-                    const VerticalDivider(
-                      color: Colors.transparent,
-                      width: 5,
+                    const VerticalDivider(color: Colors.transparent, width: 5),
+                    CoinTileSquare(
+                      logo: Image.asset('assets/bitcoin.png'),
+                      graph: Image.asset('assets/bitcoin-graph.png'),
+                      name: 'Bitcoin',
+                      code: 'BTC',
+                      price: 6780,
+                      metric: 11.75,
                     ),
-                    CoinTileSquare(size: size),
                     const VerticalDivider(color: Colors.transparent),
-                    CoinTileSquare(size: size),
+                    CoinTileSquare(
+                      logo: Image.asset('assets/ethereum.png'),
+                      graph: Image.asset('assets/ethereum-graph.png'),
+                      name: 'Ethereum',
+                      code: 'ETH',
+                      price: 1478.10,
+                      metric: 4.75,
+                    ),
                     const VerticalDivider(color: Colors.transparent),
-                    CoinTileSquare(size: size),
+                    CoinTileSquare(
+                      logo: Image.asset('assets/ripple.png'),
+                      graph: Image.asset('assets/ripple-graph.png'),
+                      name: 'Ripple',
+                      code: 'XRP',
+                      price: 1478.10,
+                      metric: -4.75,
+                    ),
                     const VerticalDivider(color: Colors.transparent),
                   ],
                 ),
@@ -147,9 +177,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   Row(
                     children: const [
-                      Text('Market Statistics'),
+                      Text(
+                        'Market Statistics',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                       Spacer(),
-                      Text('All'),
+                      Text(
+                        'All',
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
                       Icon(
                         Icons.arrow_forward_ios,
                         color: Colors.white,
@@ -240,6 +281,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                       ),
+                      const SizedBox(height: 50),
                     ],
                   ),
                 ],
@@ -248,173 +290,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class CoinTileSquare extends StatelessWidget {
-  const CoinTileSquare({
-    Key? key,
-    required this.size,
-  }) : super(key: key);
-
-  final Size size;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18),
-        color: Colors.white.withOpacity(0.12),
-      ),
-      padding: const EdgeInsets.all(15),
-      width: size.width * 0.5,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Image.asset(
-                'assets/bitcoin.png',
-                height: 36,
-                width: 36,
-              ),
-              const VerticalDivider(
-                color: Colors.transparent,
-                width: 7,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Bitcoin',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const Divider(
-                    color: Colors.transparent,
-                    height: 2,
-                  ),
-                  Text(
-                    'BTC',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.white.withOpacity(0.4),
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Text(
-                r'$6780',
-              ),
-              const Spacer(),
-              RichText(
-                text: TextSpan(
-                  children: [
-                    WidgetSpan(child: Icon(Icons.arrow_drop_down)),
-                    TextSpan(text: '11.75%')
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class CoinTile extends StatelessWidget {
-  final Widget logo;
-  final String name;
-  final String code;
-  final String price;
-  final double metric;
-  const CoinTile({
-    Key? key,
-    required this.code,
-    required this.name,
-    required this.price,
-    required this.metric,
-    required this.logo,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(
-          height: 40,
-          width: 40,
-          child: logo,
-        ),
-        const VerticalDivider(color: Colors.transparent),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(name),
-            Text(code),
-          ],
-        ),
-        const Spacer(),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text(price),
-            Text(
-              '${metric < 0 ? '' : '+'}$metric%',
-              style: TextStyle(
-                color: metric < 0 ? Colors.red : Colors.green,
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-}
-
-class AccountHeader extends StatelessWidget {
-  const AccountHeader({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Good Morning',
-              style: TextStyle(
-                color: Colors.white.withOpacity(0.7),
-                fontSize: 15.32,
-                fontFamily: GoogleFonts.montserrat().fontFamily,
-              ),
-            ),
-            const Divider(color: Colors.transparent, height: 3),
-            Text(
-              'Rabah',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 28.08,
-                fontWeight: FontWeight.w600,
-                fontFamily: GoogleFonts.epilogue().fontFamily,
-              ),
-            ),
-          ],
-        ),
-        const Spacer(),
-        Image.asset('assets/profile.png'),
-      ],
     );
   }
 }
