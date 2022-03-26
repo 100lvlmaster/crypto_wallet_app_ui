@@ -21,11 +21,11 @@ class MyFlutterApp {
   static const _kFontFam = 'MyFlutterApp';
   static const String? _kFontPkg = null;
 
-  static const IconData arrowBtn =
+  static const IconData arrow_btn =
       IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData vector2 =
+  static const IconData vector_2 =
       IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData vector3 =
+  static const IconData vector_4 =
       IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData vector =
       IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);

@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
-
   final String title;
 
   @override
@@ -35,6 +34,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _currentIndex = 0;
+
+  ///
+  _toggleIndex(int index) {
+    if (index == 2) {
+      return;
+    }
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -44,35 +55,82 @@ class _MyHomePageState extends State<MyHomePage> {
         selectedIconTheme: const IconThemeData(
           color: Color(0xff4376FE),
         ),
+        unselectedFontSize: 12,
+        elevation: 0,
+        selectedFontSize: 12,
+        unselectedItemColor: const Color(0xffA2A2A2),
         selectedLabelStyle: const TextStyle(
           color: Color(0xff4376FE),
+          fontSize: 12,
+        ),
+        unselectedLabelStyle: const TextStyle(
+          fontSize: 12,
         ),
         showSelectedLabels: true,
+        currentIndex: _currentIndex,
+        onTap: _toggleIndex,
         showUnselectedLabels: true,
+        selectedItemColor: const Color(0xff4376FE),
+        iconSize: 20,
         backgroundColor: const Color(0xff151439),
-        items: const [
-          BottomNavigationBarItem(
+        type: BottomNavigationBarType.fixed,
+        items: [
+          const BottomNavigationBarItem(
             backgroundColor: Color(0xff151439),
             label: "Home",
-            icon: Icon(MyFlutterApp.vector2),
+            icon: Icon(MyFlutterApp.vector_2),
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
+            backgroundColor: Color(0xff151439),
             label: "Portfolio",
             icon: Icon(MyFlutterApp.vector),
           ),
           BottomNavigationBarItem(
-            label: "Portfolio",
-            icon: Icon(MyFlutterApp.arrowBtn),
+            backgroundColor: const Color(0xff4376FE),
+            label: "",
+            icon: Container(),
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
+            backgroundColor: Color(0xff151439),
             label: "Prices",
-            icon: Icon(MyFlutterApp.vector3),
+            icon: Icon(MyFlutterApp.vector),
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             label: "Settings",
-            icon: Icon(Icons.person_outline_rounded),
+            backgroundColor: Color(0xff151439),
+            icon: Icon(
+              Icons.person_outline_rounded,
+              size: 25,
+            ),
           ),
         ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(top: 50.0),
+        child: Container(
+          height: 46,
+          width: 46,
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            color: Color(0xff4376FE),
+            boxShadow: [
+              BoxShadow(
+                offset: Offset(0, 5),
+                blurRadius: 20,
+                spreadRadius: 0,
+                color: Color(0xff4376FE),
+              ),
+            ],
+          ),
+          child: CircleAvatar(
+            radius: 23,
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Image.asset('assets/arrow-btn.png'),
+            ),
+          ),
+        ),
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -202,11 +260,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     logo: Image.asset('assets/bitcoin.png'),
                     name: "Bitcoin",
                     code: "BTC",
+                    graph: Image.asset('assets/graph-1.png'),
                     price: 'USDC 99,284.01',
                     metric: 68.3,
                   ),
                   Divider(color: Colors.white.withOpacity(0.1)),
                   CoinTile(
+                    graph: Image.asset('assets/graph-2.png'),
                     logo: Image.asset('assets/ethereum.png'),
                     name: "Ethereum",
                     code: "ETH",
@@ -216,6 +276,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Divider(color: Colors.white.withOpacity(0.1)),
                   CoinTile(
                     logo: Image.asset('assets/ripple.png'),
+                    graph: Image.asset('assets/graph-3.png'),
                     name: "Ripple",
                     code: "XRP",
                     price: 'USDC 0.04',
@@ -223,6 +284,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   Divider(color: Colors.white.withOpacity(0.1)),
                   CoinTile(
+                    graph: Image.asset('assets/graph-4.png'),
                     logo: Image.asset('assets/litecoin.png'),
                     name: "Litecoin Ca...",
                     code: "LTC",
@@ -231,6 +293,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   Divider(color: Colors.white.withOpacity(0.1)),
                   CoinTile(
+                    graph: Image.asset('assets/graph-5.png'),
                     logo: Image.asset('assets/ravencoin.png'),
                     name: "Ravencoin",
                     code: "RVN",
@@ -281,9 +344,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 50),
                     ],
                   ),
+                  const SizedBox(height: 120),
                 ],
               ),
             ],

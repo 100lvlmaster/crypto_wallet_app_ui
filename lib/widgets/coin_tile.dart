@@ -4,6 +4,7 @@ class CoinTile extends StatelessWidget {
   final Widget logo;
   final String name;
   final String code;
+  final Widget graph;
   final String price;
   final double metric;
   const CoinTile({
@@ -12,45 +13,51 @@ class CoinTile extends StatelessWidget {
     required this.name,
     required this.price,
     required this.metric,
+    this.graph = const SizedBox(),
     required this.logo,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Stack(
       children: [
-        SizedBox(
-          height: 40,
-          width: 40,
-          child: logo,
-        ),
-        const VerticalDivider(color: Colors.transparent),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        Center(child: graph),
+        Row(
           children: [
-            Text(
-              name,
-              style: const TextStyle(fontSize: 16),
+            SizedBox(
+              height: 40,
+              width: 40,
+              child: logo,
             ),
-            Text(
-              code,
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.white.withOpacity(0.4),
-              ),
+            const VerticalDivider(color: Colors.transparent),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name,
+                  style: const TextStyle(fontSize: 16),
+                ),
+                Text(
+                  code,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.white.withOpacity(0.4),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-        const Spacer(),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text(price),
-            Text(
-              '${metric < 0 ? '' : '+'}$metric%',
-              style: TextStyle(
-                color: metric < 0 ? Colors.red : Colors.green,
-              ),
+            const Spacer(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(price),
+                Text(
+                  '${metric < 0 ? '' : '+'}$metric%',
+                  style: TextStyle(
+                    color: metric < 0 ? Colors.red : Colors.green,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
