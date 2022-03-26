@@ -204,6 +204,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       code: 'BTC',
                       price: 6780,
                       metric: 11.75,
+                      backDropColor: const Color(0xffAB00E7),
                     ),
                     const VerticalDivider(color: Colors.transparent),
                     CoinTileSquare(
@@ -213,6 +214,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       code: 'ETH',
                       price: 1478.10,
                       metric: 4.75,
+                      backDropColor: const Color(0xff0034FF),
                     ),
                     const VerticalDivider(color: Colors.transparent),
                     CoinTileSquare(
@@ -222,6 +224,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       code: 'XRP',
                       price: 1478.10,
                       metric: -4.75,
+                      backDropColor: const Color(0xffE8503A),
                     ),
                     const VerticalDivider(color: Colors.transparent),
                   ],
